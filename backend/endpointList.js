@@ -70,10 +70,8 @@ const createEndpointsList = () => {
   }).join('\n\n');
 };
 
-// Fix the exports
 export const endpointsList = createEndpointsList();
 
-// Export as default object for compatibility
 export default { endpointsList };
 
 export { endpoints };
