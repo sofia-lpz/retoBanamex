@@ -1,15 +1,15 @@
 import { response } from 'express';
 import { endpoints, endpointsList } from './endpointList.js';
 import fetch from 'node-fetch';
-import * as service from './service.js'
+import * as service from './API/service.js'
 
-const OPEN_AI_KEY=
+const OPEN_AI_KEY= "wawa"
 const OPEN_AI_URL = process.env.OPENAI_API_URL || "https://api.openai.com/v1/chat/completions";
 const OPEN_AI_MODEL = process.env.OPENAI_MODEL || "gpt-3.5-turbo";
 
 const today = new Date();
-const currentDate = today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-const currentTime = today.toTimeString().split(' ')[0]; // Format: HH:MM:SS
+const currentDate = today.toISOString().split('T')[0]; 
+const currentTime = today.toTimeString().split(' ')[0]; 
 
 async function pickEndpoint(question) {
     const prompt = `
@@ -94,17 +94,6 @@ async function chat(prompt) {
     return response;
 }
 
-async function summarizeFeedback(feedback, store_name) {
-    const prompt = `
-You are an expert in summarizing customer feedback for retail stores. Your task is to analyze the provided feedback and generate a concise summary that highlights key themes, sentiments, and any actionable insights.
-The summary should be in the format of three clear, brief sentences, do not add formatting or bullet points, just plain text.
-The feedback for ${store_name} is as follows:
-${JSON.stringify(feedback, null, 2)}
-`;
-    const response = await chatHelper(prompt);
-    return response;
-}
-
 async function chatHelper(prompt) {
     const response = await fetch(OPEN_AI_URL, {
         method: 'POST',
@@ -133,4 +122,4 @@ async function chatHelper(prompt) {
     return data.choices[0].message.content;
 }
 
-export { chat, summarizeFeedback};
+export { chat };

@@ -19,10 +19,8 @@ import { useAuth } from '../api/authContext'; // <-- asegúrate que existe y est
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { login: setUserContext } = useAuth();
 
   const handleLogin = async () => {
   if (!email.trim() || !password.trim()) {
@@ -36,13 +34,6 @@ export default function LoginScreen({ navigation }) {
     const userData = await login(email, password); // <-- tu función API
     
     console.log('Login successful:', userData);
-
-    // Validar que venga el rol desde backend
-    if (userData?.role === 'admin' || userData?.role === 'user') {
-      setUserContext(userData); 
-    } else {
-      Alert.alert('Error', 'Rol no reconocido.');
-    }
 
   } catch (error) {
     console.error('Login error:', error);
