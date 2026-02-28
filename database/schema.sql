@@ -15,7 +15,7 @@ CREATE TABLE cliente(
     direccion VARCHAR(255) NOT NULL,
     modelocelular VARCHAR(15) NOT NULL,
     PRIMARY KEY (clienteId)
-) DEFAULT CHARSET=utf8mb4;
+);
 
 CREATE TABLE promociones
 (
@@ -24,7 +24,7 @@ CREATE TABLE promociones
     nombre VARCHAR(50) NOT NULL,
     accionada BOOLEAN NOT NULL,
     PRIMARY KEY (promocionId)
-) DEFAULT CHARSET=utf8mb4;
+);
 
 CREATE TABLE tarjetas
 (
@@ -32,7 +32,7 @@ CREATE TABLE tarjetas
     nombre VARCHAR(50) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     PRIMARY KEY (tarjetaid)
-) DEFAULT CHARSET=utf8mb4;
+);
 
 CREATE TABLE productos
 (
@@ -40,5 +40,13 @@ CREATE TABLE productos
     nombre ENUM('tarjeta', 'prestamo', 'inversion') NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     PRIMARY KEY (productoId)
-) DEFAULT CHARSET=utf8mb4;
+);
 
+CREATE TABLE embeddings
+(
+    embeddingId INT NOT NULL AUTO_INCREMENT,
+    vector JSON NOT NULL,
+    source text NOT NULL,
+    metadata JSON NOT NULL,
+    PRIMARY KEY (embeddingId)
+);

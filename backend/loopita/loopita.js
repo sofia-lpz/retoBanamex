@@ -1,9 +1,9 @@
 import { response } from 'express';
 import { endpoints, endpointsList } from './endpointList.js';
 import fetch from 'node-fetch';
-import * as service from './API/service.js'
+import * as service from '../API/service.js'
 
-const OPEN_AI_KEY= "wawa"
+const OPEN_AI_KEY = 
 const OPEN_AI_URL = process.env.OPENAI_API_URL || "https://api.openai.com/v1/chat/completions";
 const OPEN_AI_MODEL = process.env.OPENAI_MODEL || "gpt-3.5-turbo";
 
@@ -94,7 +94,7 @@ async function chat(prompt) {
     return response;
 }
 
-async function chatHelper(prompt) {
+export async function chatHelper(prompt) {
     const response = await fetch(OPEN_AI_URL, {
         method: 'POST',
         headers: {
