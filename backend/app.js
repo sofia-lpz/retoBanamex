@@ -7,7 +7,7 @@ import * as rag from './raghelper.js'
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-let ragStarted = true;
+let ragStarted = false;
 
 app.use(bodyParser.json());
 app.use("/api", router);
