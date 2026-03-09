@@ -79,3 +79,53 @@ export const getProductoById = async (id) => {
     throw err; // Re-throw to allow proper error handling in controller
   }
 }
+
+export const getPrestamos = async () => {
+  try {
+    const prestamos = await mysql.getPrestamos();
+    return prestamos;
+  } catch (err) {
+    console.error(err)
+    throw err; // Re-throw to allow proper error handling in controller
+  }
+}
+
+export const getHipoteca = async () => {
+  try {
+    const hipoteca = await mysql.getHipoteca();
+    return hipoteca;
+  } catch (err) {
+    console.error(err)
+    throw err; // Re-throw to allow proper error handling in controller
+  }
+}
+
+export const getCreditoAuto = async () => {
+  try {
+    const creditoAuto = await mysql.getCreditoAuto();
+    return creditoAuto;
+  } catch (err) {
+    console.error(err)
+    throw err; // Re-throw to allow proper error handling in controller
+  }
+}
+
+export const getInversion = async () => {
+  try {
+    const inversion = await mysql.getInversion();
+    return inversion;
+  } catch ( err) {
+    console.error(err)
+    throw err; // Re-throw to allow proper error handling in controller
+  }
+}
+
+export const getPromocionesByEmpresa = async (nombre) => {
+  try {
+    const promociones = await mysql.getPromocionesByEmpresa(nombre);
+    return promociones;
+  } catch (err) {
+    console.error(err)
+    throw err; // Re-throw to allow proper error handling in controller
+  }
+} 

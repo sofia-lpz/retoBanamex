@@ -1,54 +1,98 @@
+import express from 'express'
+import * as controller from '../API/controller.js'
+
 const endpoints = [
   {
     id: 1,
-    name: "users",
-    description: "Get user information with optional filtering",
+    name: "promociones",
+    description: "Get promotion information with optional filtering",
     column: [
       { name: "id", type: "number" },
-      { name: "username", type: "string" },
-      { name: "first_name", type: "string" },
-      { name: "last_name", type: "string" },
-      { name: "email", type: "string" },
-      { name: "role", type: "string" }
+      { name: "nombre", type: "string" },
+      { name: "descripcion", type: "string" },
+      { name: "empresa", type: "string" },
+      { name: "fecha_inicio", type: "date" },
+      { name: "fecha_fin", type: "date" }
     ]
   },
   {
     id: 2,
-    name: "stores",
-    description: "Get store information with optional filtering",
+    name: "tarjetas",
+    description: "Get card information with optional filtering",
     column: [
       { name: "id", type: "number" },
       { name: "nombre", type: "string" },
-      { name: "nps", type: "decimal" },
-      { name: "fillfoundrate", type: "decimal" },
-      { name: "damage_rate", type: "decimal" },
-      { name: "out_of_stock", type: "decimal" },
-      { name: "complaint_resolution_time_hrs", type: "decimal" }
+      { name: "tipo", type: "string" },
+      { name: "tasa_interes", type: "decimal" },
+      { name: "limite_credito", type: "decimal" },
+      { name: "anualidad", type: "decimal" }
     ]
   },
   {
     id: 3,
-    name: "feedback",
-    description: "Get feedback with optional filtering",
+    name: "productos",
+    description: "Get product information with optional filtering",
     column: [
       { name: "id", type: "number" },
-      { name: "user_id", type: "number" },
-      { name: "store_id", type: "number" },
-      { name: "comment", type: "string" },
-      { name: "created_at", type: "timestamp" },
+      { name: "nombre", type: "string" },
+      { name: "tipo", type: "string" },
+      { name: "descripcion", type: "string" },
+      { name: "tasa", type: "decimal" },
+      { name: "plazo", type: "number" }
     ]
   },
   {
     id: 4,
-    name: "citas",
-    description: "Get appointment information with optional filtering",
+    name: "prestamos",
+    description: "Get loan product details",
     column: [
       { name: "id", type: "number" },
-      { name: "store_id", type: "number" },
-      { name: "date", type: "date" },
-      { name: "time", type: "time" },
-      { name: "confirmed", type: "boolean" },
-      { name: "cancelled", type: "boolean" }
+      { name: "nombre", type: "string" },
+      { name: "monto_minimo", type: "decimal" },
+      { name: "monto_maximo", type: "decimal" },
+      { name: "tasa_interes", type: "decimal" },
+      { name: "plazo_meses", type: "number" }
+    ]
+  },
+  {
+    id: 5,
+    name: "hipoteca",
+    description: "Get mortgage product details",
+    column: [
+      { name: "id", type: "number" },
+      { name: "nombre", type: "string" },
+      { name: "monto_minimo", type: "decimal" },
+      { name: "monto_maximo", type: "decimal" },
+      { name: "tasa_interes", type: "decimal" },
+      { name: "plazo_anios", type: "number" },
+      { name: "enganche_minimo", type: "decimal" }
+    ]
+  },
+  {
+    id: 6,
+    name: "credito-auto",
+    description: "Get auto credit product details",
+    column: [
+      { name: "id", type: "number" },
+      { name: "nombre", type: "string" },
+      { name: "monto_minimo", type: "decimal" },
+      { name: "monto_maximo", type: "decimal" },
+      { name: "tasa_interes", type: "decimal" },
+      { name: "plazo_meses", type: "number" },
+      { name: "enganche_minimo", type: "decimal" }
+    ]
+  },
+  {
+    id: 7,
+    name: "inversion",
+    description: "Get investment product details",
+    column: [
+      { name: "id", type: "number" },
+      { name: "nombre", type: "string" },
+      { name: "monto_minimo", type: "decimal" },
+      { name: "rendimiento", type: "decimal" },
+      { name: "plazo_dias", type: "number" },
+      { name: "tipo", type: "string" }
     ]
   }
 ];
@@ -71,7 +115,5 @@ const createEndpointsList = () => {
 };
 
 export const endpointsList = createEndpointsList();
-
 export default { endpointsList };
-
 export { endpoints };

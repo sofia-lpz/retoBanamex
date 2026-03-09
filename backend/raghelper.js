@@ -5,7 +5,7 @@ import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import * as mysql from './API/mysql.js';
 import * as loopita from './loopita/loopita.js';
 
-const OPEN_AI_KEY = 
+const OPEN_AI_KEY = "";
 const OPEN_AI_URL = process.env.OPENAI_API_URL || "https://api.openai.com/v1/embeddings";
 const OPEN_AI_MODEL = process.env.OPENAI_MODEL || "text-embedding-3-small";
 
@@ -101,15 +101,11 @@ async function find_most_similar_embeddings(query) {
 
 export async function askRAG(query) {
     const similarEmbeddings = await find_most_similar_embeddings(query);
+    
+    // Return only the raw context text, let loopita.js handle the LLM call
     const context = similarEmbeddings.map(embedding => embedding.source).join("\n");
-
-    const prompt = `Answer the following question using the context provided. 
-    \n\nContext:\n${context}\n\nQuestion:\n${query}`;
-
-    console.log("Prompt for LLM:", prompt);
-
-    const response = await loopita.chatHelper(prompt);
-    return response;
+    
+    return context;
 }
 
 function cosineSimilarity(vecA, vecB) {

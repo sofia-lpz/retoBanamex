@@ -7,7 +7,7 @@ import * as rag from './raghelper.js'
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-let ragStarted = false;
+let ragStarted = true;
 
 app.use(bodyParser.json());
 app.use("/api", router);
@@ -22,14 +22,7 @@ if (!ragStarted) {
         ragStarted = true;
     }).catch((error) => {
         console.error('Error during RAG startup:', error);
-    });
-} else {
-    console.log('RAG already started, skipping startup.');
-    rag.askRAG("¿What happened on the 22nd of february 2026 in Mexico related to drug cartels?").then((response) => {
-}).catch((error) => {
-    console.error('Error al hacer la pregunta a RAG:', error);
-});
-} 
+    })};
 
 app.listen(PORT, () => {
   console.log(`backend escuchando en el puerto ${PORT}`);

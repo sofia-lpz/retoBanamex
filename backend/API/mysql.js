@@ -215,3 +215,81 @@ export const getProductoById = async (id) => {
     }
   }
 };
+
+export const getPromocionesByEmpresa = async (nombre) => {
+  let connection = null;
+  try {
+    connection = await connectToDB();
+    const query = 'SELECT * FROM promociones WHERE empresa = ?';
+    const [results, _] = await connection.query(query, [nombre]);
+    return results;
+  } catch (error) {
+    console.log(error);
+    throw error; // Re-throw to allow proper error handling in service
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log('Connection closed successfully');
+    }
+  }
+};
+
+export const getPrestamos = async () => {
+  try {
+    const prestamos = await mysql.getPrestamos();
+    return prestamos;
+  } catch (err) {
+    console.error(err)
+    throw err; 
+  }finally {
+    if (connection !== null) {
+      connection.end();
+      console.log('Connection closed successfully');
+    }
+  }
+}
+
+export const getHipoteca = async () => {
+  try {
+    const hipoteca = await mysql.getHipoteca();
+    return hipoteca;
+  } catch (err) {
+    console.error(err)
+    throw err; // Re-throw to allow proper error handling in service
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log('Connection closed successfully');
+    }
+  }
+}
+
+export const getCreditoAuto = async () => {
+  try {
+    const creditoAuto = await mysql.getCreditoAuto();
+    return creditoAuto;
+  } catch (err) {
+    console.error(err)
+    throw err; // Re-throw to allow proper error handling in service
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log('Connection closed successfully');
+    }
+  }
+}
+
+export  const getInversion = async () => { 
+  try {
+    const inversion = await mysql.getInversion();
+    return inversion;
+  } catch (err) {
+    console.error(err)
+    throw err; // Re-throw to allow proper error handling in service
+  } finally {
+    if (connection !== null) {
+      connection.end();
+      console.log('Connection closed successfully');
+    }
+  }
+}

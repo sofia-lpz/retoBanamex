@@ -12,7 +12,7 @@ export const chat = async (req, res) => {
       });
     }
 
-    const response = await chatbot.chat(prompt);
+    const response = await chatbot.chatHelper(prompt);
     
     return res.status(200).json({
       success: true,
@@ -195,3 +195,89 @@ export const getProductoById = async (req, res) => {
     });
   }
 } 
+
+export const getPrestamos = async (req, res) => {
+  try {
+    const prestamos = await service.getPrestamos();
+
+    return res.status(200).json({
+      success: true,
+      data: prestamos
+    });
+  } catch (error) {
+    console.error('Error in getPrestamos endpoint:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'An error occurred while fetching prestamos'
+    });
+  }
+}
+
+export const getHipoteca = async (req, res) => {
+  try {
+    const hipoteca = await service.getHipoteca();
+
+    return res.status(200).json({
+      success: true,
+      data: hipoteca
+    });
+  } catch (error) {
+    console.error('Error in getHipoteca endpoint:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'An error occurred while fetching hipoteca'
+    });
+  }
+}
+
+export const getCreditoAuto = async (req, res) => {
+  try {
+    const creditoAuto = await service.getCreditoAuto();
+
+    return res.status(200).json({
+      success: true,
+      data: creditoAuto
+    });
+  } catch (error) {
+    console.error('Error in getCreditoAuto endpoint:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'An error occurred while fetching credito auto'
+    });
+  }
+}
+
+export const getInversion = async (req, res) => {
+  try {
+    const inversion = await service.getInversion();
+
+    return res.status(200).json({
+      success: true,
+      data: inversion
+    });
+  } catch (error) {
+    console.error('Error in getInversion endpoint:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'An error occurred while fetching inversion'
+    });
+  }
+} 
+
+export const getPromocionesByEmpresa = async (req, res) => {
+  try {
+    const { nombre } = req.params;
+    const promociones = await service.getPromocionesByEmpresa(nombre);
+
+    return res.status(200).json({
+      success: true,
+      data: promociones
+    });
+  } catch (error) {
+    console.error('Error in getPromocionesByEmpresa endpoint:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'An error occurred while fetching promociones by empresa'
+    });
+  }
+}
